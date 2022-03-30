@@ -7,6 +7,7 @@ let chatPage = document.querySelector('#chatPage');
 
 let loginInput = document.querySelector('#loginNameInput');
 let textInput = document.querySelector('#chatTextInput');
+let inputButton = document.querySelector('.chatInput button')
 
 loginPage.style.display = 'flex';
 chatPage.style.display = 'none';
@@ -72,7 +73,8 @@ loginInput.addEventListener('keyup', (e) => {
         let name = loginInput.value.trim();
         if(name != '') {
             username = name;
-            document.title = 'Chat ('+username+')';
+            // document.title = 'Chat ('+username+')';
+            
 
             socket.emit('join-request', username);
         }
@@ -91,6 +93,17 @@ textInput.addEventListener('keyup', (e) => {
         }
     }
 })
+
+inputButton.addEventListener('click', () => {
+    let txt = textInput.value.trim();
+    textInput.value = '';
+
+    if(txt != '') {
+        addMessage('msg', username, txt);
+        socket.emit('send-msg', txt);
+    }
+})
+
 
 
 socket.on('user-ok', (list) => {

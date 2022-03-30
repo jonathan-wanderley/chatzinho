@@ -5,7 +5,7 @@ ul, li { list-style: none; }
 
 .page {
     height: 100vh;
-    background-color: #fff;
+    background-color: #121212;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -13,19 +13,29 @@ ul, li { list-style: none; }
 
 #loginPage {
     display: flex;
-    background-color: #fff;
+    background-color: #1F1F1F;
 }
-
+#loginPage h1 {
+    color: #fff;
+}
+#loginPage span {
+    color: #fff;
+    position: absolute;
+    right: 13px;
+    bottom: 6px;
+}
 #loginNameInput {
     margin-top: 20px;
-    border: 2px solid black;
-    background-color: #CCC;
+    border: 2px solid rgb(255, 255, 255);
+    background-color: #1F1F1F;
     font-size: 18px;
     padding: 10px;
     border-radius: 5px;
     outline: 0;
     width: 100%;
     max-width: 400px;
+    color: #fff;
+    text-align: center;
 }
 #chatPage {
     display: none;
@@ -65,7 +75,8 @@ ul, li { list-style: none; }
 }
 .chatList li.me div {
     text-align: left;
-    background-color: #007AFF;
+    /* background-color: #007AFF; */
+    background-color: #303F9F;
     color: #fff;
 }
 .chatList li.me div::before {
@@ -74,7 +85,8 @@ ul, li { list-style: none; }
     height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    border-top: 15px solid #007AFF;
+    /* border-top: 15px solid #007AFF;*/
+    border-top: 15px solid #303F9F;
     position: absolute;
     right: -15px;
     top: 0;
@@ -88,7 +100,8 @@ ul, li { list-style: none; }
     color: #2C2C2E;
     padding: 10px 7px 7px 19px;
     font-size: 15px;
-    background-color: #F2F2F7;
+    /* background-color: #F2F2F7; */
+    background-color: #BDBDBD;
     border-radius: 6px 6px 6px 6px;
     margin-bottom: 9px;
 }
@@ -98,7 +111,8 @@ ul, li { list-style: none; }
     height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    border-top: 15px solid #F2F2F7;
+    /* border-top: 15px solid #F2F2F7; */
+    border-top: 15px solid #BDBDBD;
     position: absolute;
     left: -15px;
     top: 0;
@@ -110,7 +124,8 @@ ul, li { list-style: none; }
     margin: 5px 0;
 }
 .chatList li.m-status div {
-    background-color: rgb(255, 194, 63);
+    /* background-color: rgb(255, 194, 63); */
+    background-color: #FFC107;
     border-radius: 10px;
     padding: 3px 20px;
     color: #2C2C2E;
@@ -130,8 +145,6 @@ ul, li { list-style: none; }
 .chatList li.m-txt .user.me {
     color: red;
 }
-
-
 
 
 
@@ -180,6 +193,10 @@ ul, li { list-style: none; }
     background-color: #1F1F1F;
     outline: 0;
     border: 0;
+    color: #fff;
+}
+#chatTextInput::placeholder {
+    color: #fff;
 }
 .chatInput button {
     position: absolute;
@@ -191,8 +208,11 @@ ul, li { list-style: none; }
     background-color: transparent;
     cursor: pointer;
 }
+.chatInput button svg path {
+    fill: rgba(255, 255, 255, 0.822);
+}
 .chatInput button:hover svg path {
-    fill: royalblue;
+    fill: rgb(80, 170, 255);
 }
 .chatInput button svg {
     width: 20px;
