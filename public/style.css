@@ -163,6 +163,7 @@ ul, li { list-style: none; }
     background-color: #1F1F1F;
     margin-bottom: 4px;
     border-radius: 5px;
+    word-wrap: break-word;
 }
 
 .userList::-webkit-scrollbar {
