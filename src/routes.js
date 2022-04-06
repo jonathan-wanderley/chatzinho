@@ -6,11 +6,15 @@ const AuthValidator = require('./validators/AuthValidator');
 const AuthController = require('./controllers/AuthController');
 
 router.get('/ping', async (req, res) => {
-    let users = await User.find({});
-    res.json({pong: true, users});
+    res.json({pong: true});
 });
 
-router.post('/user/signin', AuthValidator.signin, AuthController.signin);
-router.post('/user/signup', AuthValidator.signup, AuthController.signup);
+
+router.post('/signin', AuthValidator.signin, AuthController.signin);
+router.post('/signup', AuthValidator.signup, AuthController.signup);
+
+
+router.post('/auth', Auth.private, AuthController.auth);
+
 
 module.exports = router;

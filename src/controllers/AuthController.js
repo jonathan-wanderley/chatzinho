@@ -71,5 +71,10 @@ module.exports = {
         await newUser.save();
 
         res.json({token});
+    },
+    auth: async (req, res) => {
+        const user = await User.findOne({token});
+        res.json({token, nickname: user.nickname});
+        
     }
 };
