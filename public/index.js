@@ -1,5 +1,11 @@
 const url = 'http://localhost:3000';
 
+document.querySelector('.chamadaRegistro a').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector('.login').style.display = 'none';
+    document.querySelector('.registro').style.display = 'inline-block';
+})
+
 async function exec() {
     const request = {
         method: 'POST',

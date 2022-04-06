@@ -12,27 +12,91 @@ body {
 .container {
     background-color: #121212;
     color: #fff;
-    padding-top: 50px;
+    flex: 1;
 }
-h1 {
+header {
+    /* background-color: #1F1F1F; */
+    padding: 30px 0 10px;
+    /* box-shadow: 0px 0px 7px -2px rgba(0, 0, 0, 0.70); */
+    position: relative;
+}
+header h1 {
     text-align: center;
     font-family: 'Carter One', cursive;
     font-size: 45px;
-    margin-left: 25px;
+    color: #fff;
+    transition: transform 0.4s ease;
 }
-h1::after{
+header h1::after{
     content: 'v1';
     font-family: monospace;
     font-size: 24px;
     margin-left: 5px;
+}
+header h1::before{
+    content: 'v1';
+    font-family: monospace;
+    font-size: 24px;
+    margin-right: 5px;
+    color: transparent;
     
 }
-.forms {
+
+
+section {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    padding: 30px 0 0;
+}
+
+.text-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 40px;
+}
+.text-container img {
+    width: 260px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+.text {
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 25px;
+    gap: 10px;
+}
+.text a {
+    display: inline-block;
+    background-color: #282829;
+    box-shadow: 0px 0px 7px -2px rgb(0, 0, 0);
+    color: #fff;
+    width: 250px;
+    text-decoration: none;
+    padding: 12px 24px;
+    font-size: 21px;
+    border-radius: 7px;
+    margin-top: 10px;
+    transition: transform 0.2s ease;
+    margin-left: 10px;
+}
+.text a:active {
+    transform: scale(0.95,0.95);
+}
+.text .ou {
+    font-size: 27px;
+}
+
+.forms {
+    display: flex;
+    justify-content: flex-start;
     align-items: flex-start;
-    padding: 20px 50px 0;
+    
     background-color: #121212;
     color: #fff;
 }
@@ -49,14 +113,18 @@ button {
     margin-top: 10px;
     transition: transform 0.2s ease;
     border: none;
+    cursor: pointer;
 }
 button:active {
     transform: scale(0.95,0.95);
 }
 form {
-    border: 1px solid #CCCCCC;
+    /* border: 1px solid #CCCCCC; */
     padding: 35px;
     border-radius: 15px;
+    background-color: #1F1F1F;
+    /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.589); */
+    box-shadow: 0px 0px 7px -2px rgba(0, 0, 0, 0.74);
 }
 form label {
     font-size: 18px;
@@ -66,20 +134,40 @@ form .h2 {
     margin-bottom: 10px;
 }
 
+.login .chamadaRegistro {
+    text-align: center;
+    font-size: 15px;
+    margin-top: 10px;
+}
+.login .chamadaRegistro a {
+    margin-left: 2px;
+    color: #8259c9;
+}
+
+.registro {
+    display: none;
+}
+
 .form-input input {
     background-color: #121212;
     border: none;
     padding: 15px 15px;
     width: 100%;
-    border: 1px solid rgb(204, 204, 204);
+    /* border: 1px solid rgb(204, 204, 204); */
     border-radius: 5px;
     color: #fff;
     outline: 0;
     margin-bottom: 10px;
     margin-top: 3px;
+    transition: box-shadow 0.4s ease;
+    box-shadow: inset 0px 0px 7px rgba(0, 0, 0, 0.459);
+}
+.form-input input:focus {
+    /* box-shadow: 0px 0px 6px #9569e0; */
+    border-color: #8259c9;
 }
 .form-input input::placeholder {
-    color: #fff;
+    color: rgba(255, 255, 255, 0.712);
 }
 
 .div-do-botao {
