@@ -43,6 +43,17 @@ module.exports = {
         }
         const data = matchedData(req);
         
+        // Verificar se o nickname ja existe
+        const userByNick = await User.findOne({
+            nickname: data.nickname
+        });
+
+        if(userByNick) {
+            res.json({
+                error: {nickname:{msg: 'Esse nick já existe'}}
+            });
+            return;
+        }
         
         // Verificar se o email ja existe
         const user = await User.findOne({

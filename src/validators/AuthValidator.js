@@ -1,38 +1,43 @@
 const { checkSchema } = require('express-validator');
-
+// /^[A-Za-z0-9._-]+$/  REGEX
 module.exports = {
     signup: checkSchema({
         nickname: {
             trim: true,
-            isAlphanumeric: true,
-            isLength: {
-                options: { min: 2 }
+            matches: {
+                options: [/^[A-Za-z0-9._-]+$/],
+                errorMessage: "São permitidos apenas letras, numeros, traços -, pontos . e sublinhados _"
             },
-            errorMessage: 'Seu Nick deve ter pelos menos 2 caracteres e não deve ter espaços.'
+            isLength: {
+                options: {
+                    min: 2
+                }
+            },
+            errorMessage: 'Seu Nick deve ter pelos menos 2 caracteres'
         },
         email: {
             isEmail: true,
             normalizeEmail: true,
-            errorMessage: 'Email inválido.'
+            errorMessage: 'Email inválido'
         },
         password: {
             isLength: {
                 options: { min: 2 }
             },
-            errorMessage: 'A senha precisa ter pelo menos 2 caracteres.'
+            errorMessage: 'A senha precisa ter pelo menos 2 caracteres'
         }
     }),
     signin: checkSchema({
         email: {
             isEmail: true,
             normalizeEmail: true,
-            errorMessage: 'Email inválido.'
+            errorMessage: 'Email inválido'
         },
         password: {
             isLength: {
                 options: { min: 2 }
             },
-            errorMessage: 'A senha precisa ter pelo menos 2 caracteres.'
+            errorMessage: 'A senha precisa ter pelo menos 2 caracteres'
         }
     })
 };
