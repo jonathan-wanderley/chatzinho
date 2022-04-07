@@ -3,6 +3,8 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: Montserrat;}
 ul, li { list-style: none; }
 
+
+/* Pagina do chat  */
 .page {
     height: 100vh;
     background-color: #121212;
@@ -10,53 +12,25 @@ ul, li { list-style: none; }
     align-items: center;
     flex-direction: column;
 }
-
-/* #loginPage {
-    display: flex;
-    background-color: #1F1F1F;
-}
-#loginPage h1 {
-    color: #fff;
-}
-#loginPage span {
-    color: #fff;
-    position: absolute;
-    right: 13px;
-    bottom: 6px;
-}
-#loginNameInput {
-    margin-top: 20px;
-    border: 2px solid rgb(255, 255, 255);
-    background-color: #1F1F1F;
-    font-size: 18px;
-    padding: 10px;
-    border-radius: 5px;
-    outline: 0;
-    width: 100%;
-    max-width: 400px;
-    color: #fff;
-    text-align: center;
-} */
 #chatPage {
     display: flex;
 }
 
+/* Scroll do chat */
 .chatList::-webkit-scrollbar {
-    width: 12px;               /* width of the entire scrollbar */
+    width: 12px;               
 }
-
 .chatList::-webkit-scrollbar-track {
-    background: #1F1F1F;        /* color of the tracking area */
+    background: #1F1F1F;        
 }
-
 .chatList::-webkit-scrollbar-thumb {
-    background-color: #CCCCCC;    /* color of the scroll thumb */
-    border-radius: 20px;       /* roundness of the scroll thumb */
-    border: 3px solid #1F1F1F;  /* creates padding around scroll thumb */
+    background-color: #CCCCCC;    
+    border-radius: 20px;       
+    border: 3px solid #1F1F1F;  
 }
 
 
-
+/* Espaço do Chat */
 .chatArea {
     flex: 1;
     width: 100%;
@@ -85,13 +59,11 @@ ul, li { list-style: none; }
     height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    /* border-top: 15px solid #007AFF;*/
     border-top: 15px solid #303F9F;
     position: absolute;
     right: -15px;
     top: 0;
 }
-
 .chatList li div {
     max-width: 100%;
     display: inline-flex;
@@ -100,7 +72,6 @@ ul, li { list-style: none; }
     color: #2C2C2E;
     padding: 10px 7px 7px 19px;
     font-size: 15px;
-    /* background-color: #F2F2F7; */
     background-color: #BDBDBD;
     border-radius: 6px 6px 6px 6px;
     margin-bottom: 9px;
@@ -111,7 +82,6 @@ ul, li { list-style: none; }
     height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    /* border-top: 15px solid #F2F2F7; */
     border-top: 15px solid #BDBDBD;
     position: absolute;
     left: -15px;
@@ -124,7 +94,6 @@ ul, li { list-style: none; }
     margin: 5px 0;
 }
 .chatList li.m-status div {
-    /* background-color: rgb(255, 194, 63); */
     background-color: #FFC107;
     border-radius: 10px;
     padding: 3px 20px;
@@ -148,7 +117,7 @@ ul, li { list-style: none; }
 
 
 
-
+/* Lista de usuarios */
 .userList {
     width: 250px;
     background-color: #121212;
@@ -156,6 +125,7 @@ ul, li { list-style: none; }
     max-height: calc(100vh - 44px);
     padding: 5px;
 }
+/* Item da lista com o nome do usuario */
 .userList li {
     color: #fff;
     padding: 15px;
@@ -165,21 +135,20 @@ ul, li { list-style: none; }
     border-radius: 5px;
     word-wrap: break-word;
 }
-
+/* Scroll da lista de usuarios */
 .userList::-webkit-scrollbar {
-    width: 12px;               /* width of the entire scrollbar */
+    width: 12px;
 }
-
 .userList::-webkit-scrollbar-track {
-    background: #1F1F1F;        /* color of the tracking area */
+    background: #1F1F1F;
 }
-
 .userList::-webkit-scrollbar-thumb {
-    background-color: #CCCCCC;    /* color of the scroll thumb */
-    border-radius: 20px;       /* roundness of the scroll thumb */
-    border: 3px solid #1F1F1F;  /* creates padding around scroll thumb */
+    background-color: #CCCCCC;
+    border-radius: 20px;
+    border: 3px solid #1F1F1F;
 }
 
+/* Campo de texto(Input) do Chat */
 .chatInput {
     position: relative;
     width: 100%;
@@ -221,6 +190,7 @@ ul, li { list-style: none; }
 }
 
 
+/* Modal de erro */
 .modal .error{
     text-align: center;
     width: 320px;
@@ -257,8 +227,7 @@ ul, li { list-style: none; }
 }
 
 
-
-
+/* Modal para Entrar no chat */
 .modal {
     position:fixed;
     z-index: 99;

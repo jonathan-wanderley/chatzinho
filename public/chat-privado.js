@@ -25,6 +25,8 @@ modalEntrar.querySelector('.modalLogin').style.opacity = 1;
 //
 
 
+
+//Variaveis
 let username = '';
 let userList = [];
 //Seleciona os elementos e atribui a uma variavel
@@ -34,8 +36,7 @@ let textInput = document.querySelector('#chatTextInput');
 let inputButton = document.querySelector('.chatInput button');
 
 
-
-//Requisição para entrar no chat
+//Requisição para entrar no Chat
 function loginInChat() {
     modalLogin.querySelector('.modalLogin a').removeEventListener('click', loginInChat);
     socket.emit('join-request');
@@ -45,7 +46,7 @@ modalLogin.querySelector('.modalLogin a').addEventListener('click', loginInChat)
 //
 
 
-//Enviar Mensagem com enter
+//Enviar Mensagem apertando a tecla Enter
 textInput.addEventListener('keyup', (e) => {
   if(e.keyCode === 13) {
       let txt = textInput.value.trim();
@@ -57,7 +58,7 @@ textInput.addEventListener('keyup', (e) => {
       }
   }
 })
-//Enviar Mensagem apertando no botao
+//Enviar Mensagem apertando no botao()
 inputButton.addEventListener('click', () => {
   let txt = textInput.value.trim();
   textInput.value = '';
@@ -69,18 +70,16 @@ inputButton.addEventListener('click', () => {
 })
 //
 
-//Ok Signal - Conectado no chat com sucesso
+//Ok Signal - Recebe o sinal de conectado no Chat com sucesso
 socket.on('user-ok', (data) => {
   textInput.focus();
-
   addMessage('status', null, 'Conectado!');
-
   userList = data.connectedUsers;
   renderUserList();
-
 })
 
-//Atualizar lista de usuarios
+
+//Atualizar lista de usuarios conectados
 socket.on('list-update', (data) => {
   if(data.joined) {
       addMessage('status', null, data.joined+' entrou no chat.');
@@ -92,12 +91,15 @@ socket.on('list-update', (data) => {
   userList = data.list;
   renderUserList();
 })
+//
 
 
-//Exibir mensagem de usuarios
+//Exibir mensagem dos outros usuarios
 socket.on('show-msg', (data) => {
   addMessage('msg', data.username, data.message);
 })
+//
+
 
 //Status de desconectado
 socket.on('disconnect', () => {
@@ -105,10 +107,8 @@ socket.on('disconnect', () => {
   userList = [];
   renderUserList();
 });
+//
 
-// socket.on('connect_error', () => {
-//   addMessage('status', null, 'Tentando reconectar...')
-// })
 
 //Status de reconnect
 socket.io.on('reconnect', () => {

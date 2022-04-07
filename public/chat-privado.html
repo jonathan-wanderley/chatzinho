@@ -5,31 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatzinho v1</title>
-    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="chat-privado.css">
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- <div class="page" id="loginPage">
-        <h1>Qual seu nome?</h1>
-        <input type="text" id="loginNameInput" autofocus>
-        <span>Chatzinho v1.0</span>
-    </div> -->
-
-    <!-- <div>
-        <div class="error">
-            <p></p>
-            <a href="/">Faça o login</a>
-        </div>
-
-        <div class="modalLogin">
-            <a href="#">Entrar no chat</a>
-            <p>Bem vindo ao Chatzinho!</p>
-        </div>
-    </div> -->
-
+    <!-- Modal de Login (Exibe um botão pra logar caso do usuario tiver deslogado) -->
     <div class="modal ">
         <div class="modalLogin">
             <a href="#">Entrar no chat</a>
@@ -46,6 +29,8 @@
                 <!-- Usuarios Aqui -->
             </ul>
         </div>
+
+        <!-- Campo de texto(Input) do chat -->
         <div class="chatInput">
             <input type="text" id="chatTextInput" placeholder="Digite uma mensagem...">
             <button>
@@ -60,14 +45,10 @@
                 </defs>
                 </svg>
             </button>
-            
         </div>
     </div>
 
-
-
-
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/main.js"></script>
+    <script src="./chat-privado.js"></script>
 </body>
 </html>

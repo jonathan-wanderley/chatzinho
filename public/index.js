@@ -1,4 +1,5 @@
-const url = 'http://localhost:3000';
+//Url do server
+const url = window.location.origin; //URL BASE DO SITE
 
 document.querySelector('.chamadaRegistro a').addEventListener('click', (e) => {
     e.preventDefault();
@@ -6,6 +7,7 @@ document.querySelector('.chamadaRegistro a').addEventListener('click', (e) => {
     document.querySelector('.registro').style.display = 'inline-block';
 })
 
+//Checar se o usuario está logado ou não
 async function exec() {
     const request = {
         method: 'POST',
@@ -18,24 +20,23 @@ async function exec() {
     await fetch(`${url}/auth`, request)
         .then((request) => request.json())
         .then((resposta) => {
-            const { notallowed } = resposta;
+            const { notallowed, nickname } = resposta;
 
             if(!notallowed) { //LOGADO
-                document.querySelector('.div-do-botao p').innerText = '*Você está logado!';
-                document.querySelector('.div-do-botao').style.display = 'flex'
-                document.querySelector('.container').style.display = 'none';
-                // window.location.href = "/chat.html"
-            } else {  //NEGADA
-                document.querySelector('.div-do-botao p').innerText = '';
-                document.querySelector('.div-do-botao').style.display = 'none';
-                document.querySelector('.container').style.display = 'block';
+                document.querySelector('.logado p').innerHTML = `Olá <b>${nickname}</b>, acesse um de nossos chats abaixo!`;
+                document.querySelector('.logado').style.display = 'flex'
+                document.querySelector('section').style.display = 'none';
+            } else {  //Não LOGADO
+                document.querySelector('.logado p').innerText = '';
+                document.querySelector('.logado').style.display = 'none';
+                document.querySelector('section').style.display = 'flex';
             }
         })
 }
 exec();
 
 
-
+//Função de registrar, disparada ao clicar no botão Cadastrar
 async function registrar() {
     let nickname = document.querySelector('.regNome').value;
     let email = document.querySelector('.regEmail').value;
@@ -51,14 +52,26 @@ async function registrar() {
     }
     await fetch(`${url}/signup`, request)
         .then((request) => request.json())
-        .then(( res ) => {
+        .then(async ( res ) => {
             const { error, token } = res;
             if(!error) {
                 localStorage.setItem("auth:token", token);
                 alert('Cadastrado com sucesso!');
                 location.reload();
             } else {
-                alert(error);
+                let msgErro = document.querySelector('.erro-registro');
+                msgErro.innerHTML = '';
+                
+                Object.entries(error).forEach(item =>{
+                    msgErro.innerHTML += `<p>- ${item[1].msg}</p>`;
+                })
+                
+                msgErro.style.display = 'inline-block';
+
+                setTimeout(() => {
+                    msgErro.style.display = 'none';
+                    msgErro.innerHTML = '';
+                }, 4000)
             }
             
             
@@ -66,7 +79,7 @@ async function registrar() {
 }    
 
 
-
+//Função de logar, disparada ao clicar no botão Login
 async function logar() {
     let mail = document.querySelector('.logEmail').value;
     let password = document.querySelector('.logPass').value;
@@ -85,14 +98,26 @@ async function logar() {
     const { error, token, email } = res;
     if(!error) {
         localStorage.setItem("auth:token", token);
-        alert('Logado com sucesso!')
+        // alert('Logado com sucesso!')
         location.reload();
     } else {
-        alert('Não foi possivel realizar login :c')
+        let msgErro = document.querySelector('.erro-login');
+        msgErro.innerHTML = '';
+        
+        Object.entries(error).forEach(item =>{
+            msgErro.innerHTML += `<p>- ${item[1].msg}</p>`;
+        })
+        
+        msgErro.style.display = 'inline-block';
+
+        setTimeout(() => {
+            msgErro.style.display = 'none';
+            msgErro.innerHTML = '';
+        }, 4000)
     }
 }
 
-
+//Função de deslogar
 function deslogar() {
     localStorage.removeItem("auth:token");
     location.reload();
