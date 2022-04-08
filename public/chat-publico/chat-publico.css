@@ -190,43 +190,6 @@ ul, li { list-style: none; }
 }
 
 
-/* Modal de erro */
-.modal .error{
-    text-align: center;
-    width: 320px;
-    height: 200px;
-    background-color: #1F1F1F;
-    opacity: 0;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0px 0px 25px -3px rgb(0, 0, 0);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 1s ease;
-}
-.error p {
-    font-size: 20px;
-    color: #fff;
-}
-.error a {
-    display: inline-block;
-    background-color: #282829;
-    box-shadow: 0px 0px 7px -2px rgb(0, 0, 0);
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 24px;
-    font-size: 19px;
-    border-radius: 10px;
-    margin-top: 10px;
-    transition: transform 0.2s ease;
-}
-.error a:active {
-    transform: scale(0.95,0.95);
-}
-
-
 /* Modal para Entrar no chat */
 .modal {
     position:fixed;
@@ -244,32 +207,30 @@ ul, li { list-style: none; }
     backdrop-filter: blur(5px);
     transition: all 0.5s ease;
 }
-.modal .modalLogin {
+.modal .modalEntrar {
     text-align: center;
     width: 320px;
     height: 200px;
     background-color: #1F1F1F;
-    opacity: 0;
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0px 0px 25px -3px rgb(0, 0, 0);
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: opacity 1s ease;
 }
-.modalLogin p {
+.modalEntrar p {
     font-size: 20px;
     color: #fff;
 }
-.modalLogin a {
+.modalEntrar a {
     display: inline-block;
     background-color: #503383;
     background: linear-gradient(to bottom, #6b49a7, #604196, #503383);
     box-shadow: 0px 0px 7px -2px rgb(0, 0, 0);
     color: #fff;
-    width: 250px;
+    width: 100%;
     text-decoration: none;
     padding: 12px 24px;
     font-size: 21px;
@@ -277,6 +238,36 @@ ul, li { list-style: none; }
     margin-top: 10px;
     transition: transform 0.2s ease;
 }
-.modalLogin div a:active {
+.modalEntrar input {
+    text-align: center;
+    background-color: #121212;
+    border: none;
+    padding: 15px 15px;
+    width: 100%;
+    border-radius: 5px;
+    color: #fff;
+    outline: 0;
+    margin: 10px 0 0;
+    transition: box-shadow 0.4s ease;
+    box-shadow: inset 0px 0px 7px rgba(0, 0, 0, 0.459);
+}
+.modalEntrar input::placeholder {
+    color: rgba(255, 255, 255, 0.712);
+    text-align: center;
+}
+.modalEntrar a:active {
     transform: scale(0.95,0.95);
 }
+.loader {
+    animation: is-rotating 1s infinite;
+    border: 6px solid #1F1F1F;
+    border-radius: 50%;
+    border-top-color: #604196;
+    height: 50px;
+    width: 50px;
+}
+@keyframes is-rotating {
+    to {
+      transform: rotate(1turn);
+    }
+  }

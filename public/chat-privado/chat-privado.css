@@ -1,0 +1,282 @@
+@charset 'UTF8';
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: Montserrat;}
+ul, li { list-style: none; }
+
+
+/* Pagina do chat  */
+.page {
+    height: 100vh;
+    background-color: #121212;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#chatPage {
+    display: flex;
+}
+
+/* Scroll do chat */
+.chatList::-webkit-scrollbar {
+    width: 12px;               
+}
+.chatList::-webkit-scrollbar-track {
+    background: #1F1F1F;        
+}
+.chatList::-webkit-scrollbar-thumb {
+    background-color: #CCCCCC;    
+    border-radius: 20px;       
+    border: 3px solid #1F1F1F;  
+}
+
+
+/* Espaço do Chat */
+.chatArea {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    background-color: #121212;
+}
+.chatList {
+    flex: 1;
+    background-color: #1F1F1F;
+    overflow-y: auto;
+    max-height: calc(100vh - 44px);
+    padding: 25px;
+}
+.chatList li.me {
+    text-align: right;
+}
+.chatList li.me div {
+    text-align: left;
+    /* background-color: #007AFF; */
+    background-color: #303F9F;
+    color: #fff;
+}
+.chatList li.me div::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #303F9F;
+    position: absolute;
+    right: -15px;
+    top: 0;
+}
+.chatList li div {
+    max-width: 100%;
+    display: inline-flex;
+    position: relative;
+    flex-direction: column;
+    color: #2C2C2E;
+    padding: 10px 7px 7px 19px;
+    font-size: 15px;
+    background-color: #BDBDBD;
+    border-radius: 6px 6px 6px 6px;
+    margin-bottom: 9px;
+}
+.chatList li.other div::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #BDBDBD;
+    position: absolute;
+    left: -15px;
+    top: 0;
+    
+}
+.chatList li.m-status {
+    color: #2C2C2E;
+    text-align: center;
+    margin: 5px 0;
+}
+.chatList li.m-status div {
+    background-color: #FFC107;
+    border-radius: 10px;
+    padding: 3px 20px;
+    color: #2C2C2E;
+}
+.chatList li.m-txt .user {
+    font-weight: bold;
+}
+.chatList li.m-txt .msg {
+    margin-right: 60px;
+    word-break: break-word;
+}
+.chatList li.m-txt .hour {
+    text-align: right;
+    font-size: 12px;
+    padding-right: 2px;
+}
+.chatList li.m-txt .user.me {
+    color: red;
+}
+
+
+
+/* Lista de usuarios */
+.userList {
+    width: 250px;
+    background-color: #121212;
+    overflow-y: auto;
+    max-height: calc(100vh - 44px);
+    padding: 5px;
+}
+/* Item da lista com o nome do usuario */
+.userList li {
+    color: #fff;
+    padding: 15px;
+    font-size: 15px;
+    background-color: #1F1F1F;
+    margin-bottom: 4px;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+/* Scroll da lista de usuarios */
+.userList::-webkit-scrollbar {
+    width: 12px;
+}
+.userList::-webkit-scrollbar-track {
+    background: #1F1F1F;
+}
+.userList::-webkit-scrollbar-thumb {
+    background-color: #CCCCCC;
+    border-radius: 20px;
+    border: 3px solid #1F1F1F;
+}
+
+/* Campo de texto(Input) do Chat */
+.chatInput {
+    position: relative;
+    width: 100%;
+    display: flex;
+}
+#chatTextInput {   
+    flex: 1;
+    height: 40px;
+    padding: 0 50px 0 15px;
+    font-size: 15px;
+    border-top: 1px solid #121212;
+    background-color: #1F1F1F;
+    outline: 0;
+    border: 0;
+    color: #fff;
+}
+#chatTextInput::placeholder {
+    color: #fff;
+}
+.chatInput button {
+    position: absolute;
+    width: 50px;
+    height: 40px;
+    bottom: 0;
+    right: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.chatInput button svg path {
+    fill: rgba(255, 255, 255, 0.822);
+}
+.chatInput button:hover svg path {
+    fill: rgb(80, 170, 255);
+}
+.chatInput button svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* Modal de erro */
+.modal .error{
+    text-align: center;
+    width: 320px;
+    height: 200px;
+    background-color: #1F1F1F;
+    opacity: 0;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0px 0px 25px -3px rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease;
+}
+.error p {
+    font-size: 20px;
+    color: #fff;
+}
+.error a {
+    display: inline-block;
+    background-color: #282829;
+    box-shadow: 0px 0px 7px -2px rgb(0, 0, 0);
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 24px;
+    font-size: 19px;
+    border-radius: 10px;
+    margin-top: 10px;
+    transition: transform 0.2s ease;
+}
+.error a:active {
+    transform: scale(0.95,0.95);
+}
+
+
+/* Modal para Entrar no chat */
+.modal {
+    position:fixed;
+    z-index: 99;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0000008f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    transition: all 0.5s ease;
+}
+.modal .modalLogin {
+    text-align: center;
+    width: 320px;
+    height: 200px;
+    background-color: #1F1F1F;
+    opacity: 0;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0px 0px 25px -3px rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease;
+}
+.modalLogin p {
+    font-size: 20px;
+    color: #fff;
+}
+.modalLogin a {
+    display: inline-block;
+    background-color: #503383;
+    background: linear-gradient(to bottom, #6b49a7, #604196, #503383);
+    box-shadow: 0px 0px 7px -2px rgb(0, 0, 0);
+    color: #fff;
+    width: 100%;
+    text-decoration: none;
+    padding: 12px 24px;
+    font-size: 21px;
+    border-radius: 7px;
+    margin-top: 10px;
+    transition: transform 0.2s ease;
+}
+.modalLogin a:active {
+    transform: scale(0.95,0.95);
+}

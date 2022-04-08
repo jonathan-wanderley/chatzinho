@@ -1,6 +1,9 @@
 const socket = io({ //Token de autorização
     auth: {
-      token: localStorage.getItem("auth:token")
+      token: {
+        value: localStorage.getItem("auth:token"),
+        roomType: 'private'
+      }
     }
 });
 
@@ -23,7 +26,6 @@ modalEntrar.querySelector('.modalLogin a').addEventListener('click', (e) => {
 });
 modalEntrar.querySelector('.modalLogin').style.opacity = 1;
 //
-
 
 
 //Variaveis
@@ -53,7 +55,7 @@ textInput.addEventListener('keyup', (e) => {
       textInput.value = '';
 
       if(txt != '') {
-          addMessage('msg', username, txt);
+          // addMessage('msg', username, txt);
           socket.emit('send-msg', txt);
       }
   }
@@ -64,7 +66,7 @@ inputButton.addEventListener('click', () => {
   textInput.value = '';
 
   if(txt != '') {
-      addMessage('msg', username, txt);
+      // addMessage('msg', username, txt);
       socket.emit('send-msg', txt);
   }
 })
@@ -74,7 +76,8 @@ inputButton.addEventListener('click', () => {
 socket.on('user-ok', (data) => {
   textInput.focus();
   addMessage('status', null, 'Conectado!');
-  userList = data.connectedUsers;
+  userList = data.connectedUsersPrivate;
+  username = data.nickname;
   renderUserList();
 })
 
