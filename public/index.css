@@ -195,7 +195,7 @@ form .title {
 
 /* Se o usuario tiver logado */
 .logado {
-    padding: 20px 0px 0px 0px;
+    padding: 20px 0px 20px;
     display: none;
     flex-direction: column;
     text-align: center;
@@ -249,7 +249,7 @@ footer {
     text-align: center;
     color: #fff;
     width: 100%;
-    padding: 30px 0 20px;
+    padding: 10px 0 20px;
 }
 footer p span {
     color: #895fd3;
