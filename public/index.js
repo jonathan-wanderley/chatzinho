@@ -3,8 +3,8 @@ const url = window.location.origin; //URL BASE DO SITE
 
 document.querySelector('.chamadaRegistro a').addEventListener('click', (e) => {
     e.preventDefault();
-    document.querySelector('.login').style.display = 'none';
-    document.querySelector('.registro').style.display = 'inline-block';
+    document.querySelector('.login').classList.add('none');
+    document.querySelector('.registro').classList.remove('none');
 })
 
 //Checar se o usuario está logado ou não
@@ -31,6 +31,7 @@ async function exec() {
                 document.querySelector('.logado').style.display = 'none';
                 document.querySelector('section').style.display = 'flex';
             }
+            document.querySelector('.loader-box').remove();
         })
 }
 exec();
