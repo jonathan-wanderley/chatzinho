@@ -7,7 +7,6 @@ const socketIO = require('socket.io');
 const { mongoConnect } = require('./src/database/mongo')
 const apiRoutes = require('./src/routes')
 const socket = require('./socket');
-const ejs = require('ejs');
 
 mongoConnect();
 
