@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatzinho v1</title>
+    <link rel="stylesheet" href="chat-publico.css">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Modal de Login (Exibe um botão pra logar caso do usuario tiver deslogado) -->
+    <div class="modal ">
+        <div class="modalEntrar">
+            <p>Bem vindo ao chat publico!</p>
+            <input type="text" placeholder="Digite seu nick..." autofocus="true">
+            <a href="#">Entrar no chat</a>
+        </div>
+    </div>
+
+    <div class="page" id="chatPage">
+        <div class="chatArea">
+            <ul class="chatList">
+                <!-- Chat Aqui  -->
+            </ul>
+            <ul class="userList">
+                <!-- Usuarios Aqui -->
+            </ul>
+        </div>
+
+        <!-- Campo de texto(Input) do chat -->
+        <div class="chatInput">
+            <input type="text" id="chatTextInput" placeholder="Digite uma mensagem...">
+            <button>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_13_120)">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.59168 2.71245L2.38083 7.25004H7.25001C7.66422 7.25004 8.00001 7.58582 8.00001 8.00004C8.00001 8.41425 7.66422 8.75004 7.25001 8.75004H2.38083L1.59168 13.2876L13.9294 8.00004L1.59168 2.71245ZM0.988747 8.00004L0.0636748 2.68087C-0.0111098 2.25086 0.128032 1.81135 0.436661 1.50272C0.824446 1.11494 1.40926 1.00231 1.91333 1.21834L15.3157 6.9622C15.7308 7.14013 16 7.54835 16 8.00004C16 8.45172 15.7308 8.85995 15.3157 9.03788L1.91333 14.7817C1.40926 14.9978 0.824446 14.8851 0.436661 14.4974C0.128032 14.1887 -0.01111 13.7492 0.0636748 13.3192L0.988747 8.00004Z" fill="#38363F"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_13_120">
+                <rect width="16" height="16" fill="white"/>
+                </clipPath>
+                </defs>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./chat-publico.js"></script>
+</body>
+</html>

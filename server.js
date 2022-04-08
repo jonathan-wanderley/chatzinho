@@ -7,12 +7,19 @@ const socketIO = require('socket.io');
 const { mongoConnect } = require('./src/database/mongo')
 const apiRoutes = require('./src/routes')
 const socket = require('./socket');
+const ejs = require('ejs');
 
 mongoConnect();
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
+
+app.use(express.static(path.join(__dirname, '/public')));
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '/src/views'));
+
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
@@ -22,6 +29,10 @@ server.listen(process.env.PORT, () => {
 
 app.use('/', apiRoutes);
 
-app.use(express.static(path.join(__dirname, '/public')));
+app.use((req, res)=>{
+    res.render('404');
+});
+
+
 
 socket.server(io);

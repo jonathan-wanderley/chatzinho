@@ -93,7 +93,7 @@ async function loginInChat(e) {
     })
 
 
-        //Enviar Mensagem apertando a tecla Enter
+    //Enviar Mensagem apertando a tecla Enter
     textInput.addEventListener('keyup', (e) => {
       if(e.keyCode === 13) {
           let txt = textInput.value.trim();
@@ -116,8 +116,6 @@ async function loginInChat(e) {
       }
     })
     //
-
-
 }
 modalEntrar.querySelector('.modalEntrar a').addEventListener('click', loginInChat);
 //

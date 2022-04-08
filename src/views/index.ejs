@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatzinho</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+       <h1>Chatzinho</h1> 
+    </header>
+    
+    <section>
+        <div class="text-container">
+            <div class="text">
+                <img src="chat-img.png" alt="">
+                <p>Acesse o <a href="/chat-publico">Chat Publico</a></p>
+                <p class="ou">ou</p>
+                <p>Faça o login para acessar o chat privado</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="forms">
+                <!-- LOGIN -->
+                <form class="login"> 
+                    <p class="title">Faça o login</p>
+                    <div class="form-input">
+                        <label for="logEmail">Email</label>
+                        <input type="email" class="logEmail" id="logEmail" placeholder="Digite seu email..."  >
+                    </div>
+                    <div class="form-input">
+                        <label for="logPass">Senha</label>
+                        <input type="password" class="logPass" id="logPass" placeholder="Digite sua senha..."  >
+                    </div>
+                    <div class="erro-login">
+                    </div>
+                    <button type="button" class="" onclick="logar()">Login</button>
+                    <p class="chamadaRegistro">Não tem uma conta? <a href="">Criar aqui</a></p>
+                </form>
+
+                <!-- REGISTRO -->
+                <form class="registro"> 
+                    <p class="title">Cadastre-se</p>
+                    <div class="form-input">
+                        <label for="regNome">Seu nick</label>
+                        <input type="text" class="regNome" id="regNome" placeholder="Digite seu nick...">
+                    </div>
+                    <div class="form-input">
+                        <label for="regEmail">Email</label>
+                        <input type="email" class="regEmail" id="regEmail" placeholder="Digite seu email...">
+                    </div>
+                    <div class="form-input">
+                        <label for="regPass">Senha</label>
+                        <input type="password" class="regPass" id="regPass" placeholder="Digite sua senha...">
+                    </div>
+                    <div class="erro-registro">
+                    </div>
+                    <button type="button" class="" onclick="registrar()" >Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="logado">
+        <p></p>
+        <div class="chatButtons">
+            <a class="btn-chat-publico" href="/chat-publico">Acessar Chat Publico</a>
+            <a class="btn-chat" href="/chat-privado">Acessar Chat Privado</a>
+        </div>
+        <a class="btn-deslogar" href="" onclick="deslogar()">DESLOGAR</a>
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>
