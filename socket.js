@@ -1,4 +1,6 @@
+require('dotenv').config();
 const User = require('./src/models/User');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
     server: async (io) => {
@@ -15,7 +17,17 @@ module.exports = {
             roomType = socket.handshake.auth.token.roomType;
             const token = socket.handshake.auth.token.value;
             const name = socket.handshake.auth.token.nickname;
-            const user = await User.findOne({token})
+            let user;
+            
+            try {
+                const data = jwt.verify(token, process.env.JWT_SECRET);
+                const { id } = data;
+                if(id) {
+                    user = await User.findById({_id: id});
+                } 
+            } catch (error) {
+                
+            }            
             
             if(user && roomType == 'private') {
                 if(connectedUsersPrivate.includes(user.nickname)) {
@@ -50,6 +62,7 @@ module.exports = {
         });
 
         io.on('connection', (socket) => {
+            //Chat privado
             if(roomType == 'private') {
 
                 socket.join("private");

@@ -1,28 +1,26 @@
 const User = require('../models/User');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
     private: async (req, res, next) => {
-        if(!req.query.token && !req.body.token) {
-            res.json({notallowed: true});
-            return;
-        }
-        if(req.query.token) {
-            token = req.query.token;
-        }
-        if(req.body.token) {
-            token = req.body.token;
-        }
-        if(token == '') {
+
+        const { authorization } = req.headers;
+
+        if(!authorization) {
             res.json({notallowed: true});
             return;
         }
 
-        const user = await User.findOne({token})
-        if(!user) {
-            res.json({notallowed: true});
-            return;
-        }
+        const token = authorization.replace('Bearer', '').trim();
 
-        next();
+        try {
+            const data = jwt.verify(token, process.env.JWT_SECRET);
+            const { id } = data;
+            req.userID = id
+            return next();
+
+        } catch (error) {
+            return res.json({notallowed: true});
+        }
     }
 };

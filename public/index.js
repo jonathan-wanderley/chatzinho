@@ -10,11 +10,10 @@ document.querySelector('.chamadaRegistro a').addEventListener('click', (e) => {
 //Checar se o usuario está logado ou não
 async function exec() {
     const request = {
-        method: 'POST',
-        body: `token=${localStorage.getItem("auth:token")}`,
-        headers: 
-        {
-            "Content-Type": "application/x-www-form-urlencoded"
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("auth:token")}`,
+            Accept: "application/json",
         }
     };
     await fetch(`${url}/auth`, request)
@@ -96,10 +95,9 @@ async function logar() {
 
     let response = await fetch(`${url}/signin`, request)
     let res = await response.json()
-    const { error, token, email } = res;
+    const { error, token } = res;
     if(!error) {
         localStorage.setItem("auth:token", token);
-        // alert('Logado com sucesso!')
         location.reload();
     } else {
         let msgErro = document.querySelector('.erro-login');

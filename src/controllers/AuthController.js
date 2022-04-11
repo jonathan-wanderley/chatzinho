@@ -1,6 +1,8 @@
+require('dotenv').config();
 const { validationResult, matchedData } = require('express-validator');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
 module.exports = {
@@ -40,13 +42,9 @@ module.exports = {
             return;
         }
 
-        const payload = (Date.now() + Math.random()).toString();
-        const token = await bcrypt.hash(payload, 10);
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
 
-        user.token = token;
-        await user.save();
-
-        res.json({token, email: data.email});
+        res.json({ token });
 
     },
     signup: async (req, res) => {
@@ -81,25 +79,22 @@ module.exports = {
             return;
         }
 
-        const passwordHash = await bcrypt.hash(data.password, 10);
-
-        const payload = (Date.now() + Math.random()).toString();
-        const token = await bcrypt.hash(payload, 10);
+        const passwordHash = await bcrypt.hash(data.password, 10); 
 
         const newUser = new User({
             nickname: data.nickname,
             email: data.email,
-            passwordHash,
-            token
+            passwordHash
         });
 
         await newUser.save();
+        
+        const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
 
         res.json({token});
     },
     auth: async (req, res) => {
-        const user = await User.findOne({token});
-        res.json({token, nickname: user.nickname});
-        
+        const user = await User.findById(req.userID);
+        res.json({ id: user._id , nickname: user.nickname});  
     }
 };

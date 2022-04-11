@@ -1,6 +1,5 @@
 const modalEntrar = document.querySelector('.modal');
 
-
 //Variaveis
 let username = '';
 let userList = [];
@@ -13,6 +12,7 @@ let inputButton = document.querySelector('.chatInput button');
 
 //Requisição para entrar no Chat
 async function loginInChat(e) {
+    console.log('eventando');
     e.preventDefault();
     modalEntrar.querySelector('.modalEntrar a').removeEventListener('click', loginInChat);
     const nick = modalEntrar.querySelector('.modalEntrar input').value;
@@ -47,6 +47,7 @@ async function loginInChat(e) {
     //Ok Signal - Recebe o sinal de conectado no Chat com sucesso
     socket.on('user-ok', (data) => {
       modalEntrar.style.display = 'none';
+      modalEntrar.remove();
       textInput.focus();
       addMessage('status', null, 'Conectado!');
       userList = data.connectedUsersPublic;
@@ -95,7 +96,7 @@ async function loginInChat(e) {
           textInput.value = '';
 
           if(txt != '') {
-              // addMessage('msg', username, txt);
+              
               socket.emit('send-msg', txt);
           }
       }
@@ -106,13 +107,18 @@ async function loginInChat(e) {
       textInput.value = '';
 
       if(txt != '') {
-          // addMessage('msg', username, txt);
+          
           socket.emit('send-msg', txt);
       }
     })
     //
 }
 modalEntrar.querySelector('.modalEntrar a').addEventListener('click', loginInChat);
+modalEntrar.querySelector('.modalEntrar input').addEventListener('keyup', (e) => {
+  if(e.keyCode === 13) {
+    modalEntrar.querySelector('.modalEntrar a').click();
+  }
+});
 //
 
 
