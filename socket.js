@@ -18,6 +18,9 @@ module.exports = {
             const user = await User.findOne({token})
             
             if(user && roomType == 'private') {
+                if(connectedUsersPrivate.includes(user.nickname)) {
+                    next(new Error("Você já está conectado!"));
+                }
                 usernamePrivate = user.nickname;
                 next();
             }
@@ -34,7 +37,7 @@ module.exports = {
                     next(new Error(`Esse nick está reservado! Se for você, realize o login.`));
                 }
                 else if (connectedUsersPublic.includes(name)) {
-                    next(new Error("Esse nick está em uso."));
+                    next(new Error("Esse nick já está conectado!"));
                 }
                 else {
                     usernamePublic = name;

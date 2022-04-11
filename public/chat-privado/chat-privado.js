@@ -11,11 +11,11 @@ const socket = io({ //Token de autorização
 //ou um botao pra entrar no chat se a autenticação for sucesso
 socket.on("connect_error", (err) => {
     const errorWindow = document.querySelector('.modal');
-    
+    const erroMsg = err.message=='Você já está conectado!' ? "" : '<a href="/">Faça o login</a>';
     errorWindow.innerHTML =
     `<div class="error">
       <p>${err.message}</p>
-      <a href="/">Faça o login</a>
+      ${erroMsg}
     </div>`;
     errorWindow.querySelector('.error').style.opacity = 1;
 });

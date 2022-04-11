@@ -15,14 +15,28 @@ module.exports = {
         // Valida o email
         const user = await User.findOne({email: data.email});
         if(!user) {
-            res.json({error: 'Email e/ou senha errados!'});
+            res.json({
+                error: {
+                    emailOrPassError: {
+                        location: "body",
+                        msg: "Email e/ou senha errados!",
+                    }
+                }
+            });
             return;
         }
 
         // Valida a senha
         const match = await bcrypt.compare(data.password, user.passwordHash);
         if(!match) {
-            res.json({error: 'Email e/ou senha errados!'});
+            res.json({
+                error: {
+                    emailOrPassError: {
+                        location: "body",
+                        msg: "Email e/ou senha errados!",
+                    }
+                }
+            });
             return;
         }
 
