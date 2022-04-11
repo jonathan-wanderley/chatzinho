@@ -1,9 +1,4 @@
 const modalEntrar = document.querySelector('.modal');
-// modalEntrar.querySelector('.modalEntrar a').addEventListener('click', (e) => {
-//   e.preventDefault();
-// });
-// modalEntrar.querySelector('.modalEntrar').style.opacity = 1;
-// //
 
 
 //Variaveis
@@ -121,13 +116,20 @@ modalEntrar.querySelector('.modalEntrar a').addEventListener('click', loginInCha
 //
 
 
-function isConnected() {
-    
-}
-
-
-
-
+const chatButton = document.querySelector('#chatButton');
+const userButton = document.querySelector('#userButton');
+chatButton.addEventListener('click', () => {
+    chatButton.style.borderBottom = '4px solid #6b49a7';
+    userButton.style.borderBottom = '4px solid #1F1F1F';
+    document.querySelector('.chatList').style.display = 'block';
+    document.querySelector('.userList').style.display = 'none';
+})
+userButton.addEventListener('click', () => {
+  userButton.style.borderBottom = '4px solid #6b49a7';
+  chatButton.style.borderBottom = '4px solid #1F1F1F';
+  document.querySelector('.userList').style.display = 'block';
+  document.querySelector('.chatList').style.display = 'none';
+})
 
 
 

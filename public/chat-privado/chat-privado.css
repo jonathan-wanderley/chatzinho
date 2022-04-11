@@ -49,9 +49,9 @@ ul, li { list-style: none; }
 }
 .chatList li.me div {
     text-align: left;
-    /* background-color: #007AFF; */
-    background-color: #303F9F;
+    background-color: #604196;
     color: #fff;
+    box-shadow: 0px 0px 7px -2px rgb(0 0 0);
 }
 .chatList li.me div::before {
     content: '';
@@ -59,7 +59,7 @@ ul, li { list-style: none; }
     height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    border-top: 15px solid #303F9F;
+    border-top: 15px solid #604196;
     position: absolute;
     right: -15px;
     top: 0;
@@ -69,10 +69,10 @@ ul, li { list-style: none; }
     display: inline-flex;
     position: relative;
     flex-direction: column;
-    color: #2C2C2E;
+    color: #fff;
     padding: 10px 7px 7px 19px;
     font-size: 15px;
-    background-color: #BDBDBD;
+    background-color: #303032;
     border-radius: 6px 6px 6px 6px;
     margin-bottom: 9px;
 }
@@ -82,7 +82,7 @@ ul, li { list-style: none; }
     height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    border-top: 15px solid #BDBDBD;
+    border-top: 15px solid #303032;
     position: absolute;
     left: -15px;
     top: 0;
@@ -94,7 +94,7 @@ ul, li { list-style: none; }
     margin: 5px 0;
 }
 .chatList li.m-status div {
-    background-color: #FFC107;
+    background-color: #E9FE37;
     border-radius: 10px;
     padding: 3px 20px;
     color: #2C2C2E;
@@ -182,7 +182,7 @@ ul, li { list-style: none; }
     fill: rgba(255, 255, 255, 0.822);
 }
 .chatInput button:hover svg path {
-    fill: rgb(80, 170, 255);
+    fill: #6b49a7;
 }
 .chatInput button svg {
     width: 20px;
@@ -237,6 +237,7 @@ ul, li { list-style: none; }
     left: 0;
     width: 100%;
     height: 100%;
+    padding: 10px;
     background-color: #0000008f;
     display: flex;
     justify-content: center;
@@ -279,4 +280,58 @@ ul, li { list-style: none; }
 }
 .modalLogin a:active {
     transform: scale(0.95,0.95);
+}
+
+
+
+.menuPage {
+    display: none;
+    width: 100%;
+}
+.menuPage ul {
+    display: flex;
+    width: 100%;
+    padding: 5px;
+    gap: 5px;
+    height: 50px;
+}
+.menuPage ul li {
+    flex: 1;
+    color: #fff;
+    text-align: center;
+    background-color: #1F1F1F;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (min-width: 713px) {
+    .userList {
+        display: block !important;
+        width: 250px !important;
+    }
+    .chatList {
+        display: block !important;
+    }
+}
+
+@media screen and (max-width: 712px) {
+    .menuPage {
+        display: flex;
+    }
+    .chatList {
+        max-height: calc(100vh - 94px);
+    }
+    .userList {
+        display: none;
+        width: 100%;
+        max-height: calc(100vh - 94px);
+    }
+    #chatButton {
+        border-bottom: 4px solid #6b49a7;
+    }
+    #userButton {
+        border-bottom: 4px solid #1F1F1F;
+    }
 }

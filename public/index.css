@@ -84,7 +84,14 @@ section {
 .text .ou {
     font-size: 27px;
 }
-
+.textReservado {
+    font-size: 15px;
+    font-style: italic;
+    margin-top: -5px;
+}
+.textReservado span {
+    font-style:normal;
+}
 
 /* Login e Registro */
 .forms {
@@ -202,6 +209,16 @@ form .title {
     gap: 20px;
     color: #fff;
 }
+.chatButtons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 10px;
+    gap: 20px;
+}
+.logado p {
+    padding: 0 10px;
+}
 .btn-deslogar {
     display: inline-block;
     background-color: #b14d4d;
@@ -211,7 +228,6 @@ form .title {
     padding: 10px 24px;
     font-size: 19px;
     border-radius: 10px;
-    margin-top: 10px;
     transition: transform 0.2s ease;
     border: none;
     margin: auto;
@@ -225,10 +241,8 @@ form .title {
     padding: 10px 24px;
     font-size: 19px;
     border-radius: 10px;
-    margin-top: 10px;
     transition: transform 0.2s ease;
     border: none;
-    margin: auto;
 }
 .btn-chat {
     background-color: #503383;

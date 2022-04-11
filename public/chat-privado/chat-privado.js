@@ -38,6 +38,24 @@ let textInput = document.querySelector('#chatTextInput');
 let inputButton = document.querySelector('.chatInput button');
 
 
+//Menu para alternar entre chat e usuarios no mobile
+const chatButton = document.querySelector('#chatButton');
+const userButton = document.querySelector('#userButton');
+chatButton.addEventListener('click', () => {
+    chatButton.style.borderBottom = '4px solid #6b49a7';
+    userButton.style.borderBottom = '4px solid #1F1F1F';
+    document.querySelector('.chatList').style.display = 'block';
+    document.querySelector('.userList').style.display = 'none';
+})
+userButton.addEventListener('click', () => {
+  userButton.style.borderBottom = '4px solid #6b49a7';
+  chatButton.style.borderBottom = '4px solid #1F1F1F';
+  document.querySelector('.userList').style.display = 'block';
+  document.querySelector('.chatList').style.display = 'none';
+})
+
+
+
 //Requisição para entrar no Chat
 function loginInChat() {
     modalLogin.querySelector('.modalLogin a').removeEventListener('click', loginInChat);
