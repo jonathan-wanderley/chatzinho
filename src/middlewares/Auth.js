@@ -18,7 +18,7 @@ module.exports = {
             const { id } = data;
             req.userID = id
             return next();
-
+            
         } catch (error) {
             return res.json({notallowed: true});
         }

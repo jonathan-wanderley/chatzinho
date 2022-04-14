@@ -6,6 +6,7 @@ module.exports = {
         try {
             await connect(process.env.MONGO_URL);
             console.log('MongoDB conectado!');
+            
         } catch (error) {
             console.log("Erro de conexao MongoDB", error);
         }

@@ -20,6 +20,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/src/views'));
 
 app.use(cors());
+
 app.use(express.urlencoded({ extended: true }));
 
 server.listen(process.env.PORT, () => {
@@ -27,11 +28,8 @@ server.listen(process.env.PORT, () => {
 });
 
 app.use('/', apiRoutes);
-
 app.use((req, res)=>{
-    res.render('404');
+    res.status(404).render('404');
 });
-
-
 
 socket.server(io);

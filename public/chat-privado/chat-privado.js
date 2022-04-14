@@ -158,13 +158,13 @@ function addMessage(type, user, msg) {
   let ul = document.querySelector('.chatList');
 
   let currentTime = new Date();
-  let hora = currentTime.getHours();
-  let minuto = currentTime.getMinutes();
-  let hourafter = '';
-  if(hora>=12) {
-      hourafter = 'PM';
+  let hour = currentTime.getHours();
+  let minute = currentTime.getMinutes();
+  let hourAbbreviation = '';
+  if(hour>=12) {
+      hourAbbreviation = 'PM';
   } else {
-      hourafter = 'AM';
+      hourAbbreviation = 'AM';
   }
   switch(type) {
       case 'status':
@@ -177,7 +177,7 @@ function addMessage(type, user, msg) {
                   <div>
                       <span class="user">${user}</span>
                       <p class="msg">${msg}</p>
-                      <span class="hour">${hora}:${minuto} ${hourafter}</span>
+                      <span class="hour">${hour}:${minute} ${hourAbbreviation}</span>
                   </div>
               </li>`;
               break;
@@ -187,7 +187,7 @@ function addMessage(type, user, msg) {
                   <div>
                       <span class="user">${user}</span>
                       <p class="msg">${msg}</p>
-                      <span class="hour">${hora}:${minuto} ${hourafter}</span>
+                      <span class="hour">${hour}:${minute} ${hourAbbreviation}</span>
                   </div>
               </li>`;
               break;

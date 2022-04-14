@@ -1,5 +1,5 @@
 const { checkSchema } = require('express-validator');
-// /^[A-Za-z0-9._-]+$/  REGEX
+
 module.exports = {
     signup: checkSchema({
         nickname: {

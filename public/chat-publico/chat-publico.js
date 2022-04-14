@@ -4,7 +4,7 @@ const modalEntrar = document.querySelector('.modal');
 let username = '';
 let userList = [];
 //Seleciona os elementos e atribui a uma variavel
-// let modalLogin = document.querySelector('.modal');
+
 let chatPage = document.querySelector('#chatPage');
 let textInput = document.querySelector('#chatTextInput');
 let inputButton = document.querySelector('.chatInput button');
@@ -12,7 +12,6 @@ let inputButton = document.querySelector('.chatInput button');
 
 //Requisição para entrar no Chat
 async function loginInChat(e) {
-    console.log('eventando');
     e.preventDefault();
     modalEntrar.querySelector('.modalEntrar a').removeEventListener('click', loginInChat);
     const nick = modalEntrar.querySelector('.modalEntrar input').value;
@@ -121,7 +120,7 @@ modalEntrar.querySelector('.modalEntrar input').addEventListener('keyup', (e) =>
 });
 //
 
-
+//Botoes de navegacao entra abas para mobile
 const chatButton = document.querySelector('#chatButton');
 const userButton = document.querySelector('#userButton');
 chatButton.addEventListener('click', () => {
@@ -156,13 +155,13 @@ function addMessage(type, user, msg) {
   let ul = document.querySelector('.chatList');
 
   let currentTime = new Date();
-  let hora = currentTime.getHours();
-  let minuto = currentTime.getMinutes();
-  let hourafter = '';
-  if(hora>=12) {
-      hourafter = 'PM';
+  let hour = currentTime.getHours();
+  let minute = currentTime.getMinutes();
+  let hourAbbreviation = '';
+  if(hour>=12) {
+      hourAbbreviation = 'PM';
   } else {
-      hourafter = 'AM';
+      hourAbbreviation = 'AM';
   }
   switch(type) {
       case 'status':
@@ -175,7 +174,7 @@ function addMessage(type, user, msg) {
                   <div>
                       <span class="user">${user}</span>
                       <p class="msg">${msg}</p>
-                      <span class="hour">${hora}:${minuto} ${hourafter}</span>
+                      <span class="hour">${hour}:${minute} ${hourAbbreviation}</span>
                   </div>
               </li>`;
               break;
@@ -185,7 +184,7 @@ function addMessage(type, user, msg) {
                   <div>
                       <span class="user">${user}</span>
                       <p class="msg">${msg}</p>
-                      <span class="hour">${hora}:${minuto} ${hourafter}</span>
+                      <span class="hour">${hour}:${minuto} ${hourAbbreviation}</span>
                   </div>
               </li>`;
               break;
