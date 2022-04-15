@@ -27,7 +27,7 @@ module.exports = {
         }
 
         // Valida a senha
-        const isValidPassword = await bcrypt.compare(data.password, user.passwordHash);
+        const isValidPassword = await bcrypt.compare(data.password, userFoundByEmail.passwordHash);
         if(!isValidPassword) {
             return res.status(400).json({
                 error: {
@@ -40,7 +40,7 @@ module.exports = {
             
         }
 
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
+        const token = jwt.sign({ id: userFoundByEmail._id }, process.env.JWT_SECRET)
 
         res.json({ token });
     },

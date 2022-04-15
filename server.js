@@ -5,7 +5,7 @@ const path = require('path');
 const http = require('http');
 const socketIO = require('socket.io');
 const { mongoConnect } = require('./src/database/mongo')
-const apiRoutes = require('./src/routes')
+const webRoutes = require('./src/routes')
 const socket = require('./socket');
 
 mongoConnect();
@@ -27,7 +27,7 @@ server.listen(process.env.PORT, () => {
     console.log(`🔥 Servidor rodando!`);
 });
 
-app.use('/', apiRoutes);
+app.use('/', webRoutes);
 app.use((req, res)=>{
     res.status(404).render('404');
 });

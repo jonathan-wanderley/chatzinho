@@ -16,7 +16,7 @@ async function exec() {
             Accept: "application/json",
         }
     };
-    await fetch(`${url}/auth`, request)
+    await fetch(`${url}/api/auth`, request)
         .then((request) => request.json())
         .then((resposta) => {
             const { notallowed, nickname } = resposta;
@@ -50,7 +50,7 @@ async function registrar() {
             "Content-Type": "application/x-www-form-urlencoded"
         }
     }
-    await fetch(`${url}/signup`, request)
+    await fetch(`${url}/api/signup`, request)
         .then((request) => request.json())
         .then(async ( res ) => {
             const { error, token } = res;
@@ -93,7 +93,7 @@ async function logar() {
         }
     }
 
-    let response = await fetch(`${url}/signin`, request)
+    let response = await fetch(`${url}/api/signin`, request)
     let res = await response.json()
     const { error, token } = res;
     if(!error) {
