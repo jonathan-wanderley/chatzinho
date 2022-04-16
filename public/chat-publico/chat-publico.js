@@ -184,7 +184,7 @@ function addMessage(type, user, msg) {
                   <div>
                       <span class="user">${user}</span>
                       <p class="msg">${msg}</p>
-                      <span class="hour">${hour}:${minuto} ${hourAbbreviation}</span>
+                      <span class="hour">${hour}:${minute} ${hourAbbreviation}</span>
                   </div>
               </li>`;
               break;
