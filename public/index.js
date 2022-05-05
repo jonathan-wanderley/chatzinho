@@ -22,7 +22,8 @@ async function exec() {
             const { notallowed, nickname } = resposta;
 
             if(!notallowed) { //LOGADO
-                document.querySelector('.logado p').innerHTML = `Olá <b>${nickname}</b>, acesse um de nossos chats abaixo!`;
+                document.querySelector('.logado p').innerHTML = `Olá <b></b>, acesse um de nossos chats abaixo!`;
+                document.querySelector('.logado p b').textContent = nickname;
                 document.querySelector('.logado').style.display = 'flex'
                 document.querySelector('section').style.display = 'none';
             } else {  //Não LOGADO
@@ -63,7 +64,9 @@ async function registrar() {
                 msgErro.innerHTML = '';
                 
                 Object.entries(error).forEach(item =>{
-                    msgErro.innerHTML += `<p>- ${item[1].msg}</p>`;
+                    const elementoErro = document.createElement('p');
+                    elementoErro.textContent = `- ${item[1].msg}`;
+                    msgErro.append(elementoErro);
                 })
                 
                 msgErro.style.display = 'inline-block';
@@ -104,7 +107,9 @@ async function logar() {
         msgErro.innerHTML = '';
         
         Object.entries(error).forEach(item =>{
-            msgErro.innerHTML += `<p>- ${item[1].msg}</p>`;
+            const elementoErro = document.createElement('p');
+            elementoErro.textContent = `- ${item[1].msg}`;
+            msgErro.append(elementoErro);
         })
         
         msgErro.style.display = 'inline-block';

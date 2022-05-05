@@ -28,18 +28,30 @@ async function loginInChat(e) {
     
     await socket.emit('join-request', nick);
     
-    document.querySelector('.modalEntrar').innerHTML = '<div class="loader"></div>';
+    const loaderElement = document.createElement('div');
+    loaderElement.classList.add('loader');
+    document.querySelector('.modalEntrar').innerHTML = '';
+    document.querySelector('.modalEntrar').append(loaderElement);
 
     //Exibe a janela de erro em caso de falha na autenticação
     //ou um botao pra entrar no chat se a autenticação for sucesso
     socket.on("connect_error", (err) => {
       const errorWindow = document.querySelector('.modal');
       
-      errorWindow.innerHTML =
-        `<div class="modalEntrar">
-          <p>${err.message}</p>
-          <a href="">Tente novamente</a>
-        </div>`;
+      const errorElement = document.createElement('div');
+      errorElement.classList.add('modalEntrar');
+
+      const errorMessage = document.createElement('p');
+      errorMessage.textContent = err.message;
+
+      const tryButton = document.createElement('a');
+      tryButton.href = "";
+      tryButton.textContent = "Tente novamente";
+
+      errorElement.append(errorMessage, tryButton);
+      errorWindow.innerHTML = null;
+      errorWindow.append(errorElement);
+      
       errorWindow.querySelector('.modalEntrar').style.opacity = 1;
     });
 
@@ -140,13 +152,37 @@ userButton.addEventListener('click', () => {
 
 //FUNÇÕES
 
+function getFormattedDate() {
+  let currentTime = new Date();
+  let hourX = `${currentTime.getHours()}`;
+  let hour = hourX;
+  if(hourX.length == 1) {
+    hour = '0'+hourX;
+  }
+  let minuteX = `${currentTime.getMinutes()}`;
+  let minute = minuteX;
+  if(minuteX.length == 1) {
+    minute = '0'+minuteX;
+  }
+  let hourAbbreviation = '';
+  if(hour>=12) {
+      hourAbbreviation = 'PM';
+  } else {
+      hourAbbreviation = 'AM';
+  }
+
+  return `${hour}:${minute} ${hourAbbreviation}`;
+}
+
 //Atualizar lista de usuarios
 function renderUserList() {
   let ul = document.querySelector('.userList');
   ul.innerHTML = '';
 
   userList.forEach(i => {
-      ul.innerHTML += '<li>'+i+'</li>';
+      const userElement = document.createElement('li');
+      userElement.textContent = i;
+      ul.append(userElement);
   })
 }
 
@@ -154,39 +190,65 @@ function renderUserList() {
 function addMessage(type, user, msg) {
   let ul = document.querySelector('.chatList');
 
-  let currentTime = new Date();
-  let hour = currentTime.getHours();
-  let minute = currentTime.getMinutes();
-  let hourAbbreviation = '';
-  if(hour>=12) {
-      hourAbbreviation = 'PM';
-  } else {
-      hourAbbreviation = 'AM';
-  }
   switch(type) {
       case 'status':
-          ul.innerHTML += '<li class="m-status"><div>'+msg+'</div></li>';
+          const statusElement = document.createElement('li');
+          statusElement.classList.add('m-status');
+          
+          const statusDiv = document.createElement('div');
+          statusDiv.textContent = msg;
+
+          statusElement.append(statusDiv);
+          ul.append(statusElement);
           break;
       case 'msg':
           if(username == user) {
-              ul.innerHTML +=
-              `<li class="m-txt me">
-                  <div>
-                      <span class="user">${user}</span>
-                      <p class="msg">${msg}</p>
-                      <span class="hour">${hour}:${minute} ${hourAbbreviation}</span>
-                  </div>
-              </li>`;
+              const myMessageElement = document.createElement('li');
+              myMessageElement.classList.add('m-txt');
+              myMessageElement.classList.add('me');
+
+              const myMessageDiv = document.createElement('div');
+              
+              const myMessageUser = document.createElement('span');
+              myMessageUser.classList.add('user');
+              myMessageUser.textContent = user;
+
+              const myMessageText = document.createElement('p');
+              myMessageText.classList.add('msg');
+              myMessageText.textContent = msg;
+
+              const myMessageTime = document.createElement('span');
+              myMessageTime.classList.add('hour');
+              myMessageTime.textContent = getFormattedDate();
+
+              myMessageDiv.append(myMessageUser, myMessageText, myMessageTime);
+              myMessageElement.append(myMessageDiv);
+              ul.append(myMessageElement);
+              
               break;
           } else {
-              ul.innerHTML +=
-              `<li class="m-txt other">
-                  <div>
-                      <span class="user">${user}</span>
-                      <p class="msg">${msg}</p>
-                      <span class="hour">${hour}:${minute} ${hourAbbreviation}</span>
-                  </div>
-              </li>`;
+              const msgElement = document.createElement('li');
+              msgElement.classList.add('m-txt');
+              msgElement.classList.add('other');
+
+              const msgDiv = document.createElement('div');
+
+              const msgUser = document.createElement('span');
+              msgUser.classList.add('user');
+              msgUser.textContent = user;
+
+              const msgText = document.createElement('p');
+              msgText.classList.add('msg');
+              msgText.textContent = msg;
+
+              const msgTime = document.createElement('span');
+              msgTime.classList.add('hour');
+              msgTime.textContent = getFormattedDate();
+
+              msgDiv.append(msgUser, msgText, msgTime);
+              msgElement.append(msgDiv);
+              ul.append(msgElement);
+
               break;
           }    
   }
